@@ -452,7 +452,6 @@ export function useLanguage() {
   return context
 }
 
-export { LanguageProvider }
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>("pt")
   const [t, setTranslations] = useState<Translations>(translations.pt)
