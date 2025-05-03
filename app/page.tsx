@@ -2,25 +2,19 @@ import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
 import { Breadcrumb } from "@/components/layout/breadcrumb"
 import { DashboardLayout } from "@/components/layout/dashboard-layout"
-import { DashboardProvider } from "@/components/providers/dashboard-provider"
 import { WelcomeCard } from "@/components/features/dashboard/welcome-card"
 import { StatsGrid } from "@/components/features/dashboard/stats-grid"
 import { TrafficSources } from "@/components/features/dashboard/traffic-sources"
 import { SalesRevenue } from "@/components/features/dashboard/sales-revenue"
 import { BottomStats } from "@/components/features/dashboard/bottom-stats"
+import { AppProviders } from "@/components/providers/app-providers"
 import { DashboardContent } from "@/components/dashboard-content"
-import { NotificationProvider } from "@/components/notifications/notification-context"
-import { LanguageProvider } from "@/components/i18n/language-context"
 
 export default function Dashboard() {
   return (
-    <LanguageProvider>
-      <NotificationProvider>
-        <DashboardProvider>
-          <DashboardContent />
-        </DashboardProvider>
-      </NotificationProvider>
-    </LanguageProvider>
+    <AppProviders>
+      <DashboardContent />
+    </AppProviders>
   )
 }
 
