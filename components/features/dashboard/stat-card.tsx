@@ -1,5 +1,9 @@
+"use client"
+
 import { Card, CardContent } from "@/components/ui/card"
 import { Icon } from "@/components/ui/icon"
+import { useLanguage } from "@/components/i18n/language-context"
+import { formatCurrencyWithSymbol } from "@/utils/format"
 
 interface StatCardProps {
   icon: string
@@ -9,6 +13,8 @@ interface StatCardProps {
 }
 
 export function StatCard({ icon, iconColor, value, label }: StatCardProps) {
+  const { language } = useLanguage()
+
   // Definindo classes de cores para modo claro e escuro
   const bgColorMap: Record<string, string> = {
     blue: "bg-blue-100 dark:bg-blue-900/20",
@@ -31,13 +37,16 @@ export function StatCard({ icon, iconColor, value, label }: StatCardProps) {
   const bgColorClass = bgColorMap[iconColor] || "bg-gray-100 dark:bg-gray-800"
   const textColorClass = textColorMap[iconColor] || "text-gray-500 dark:text-gray-400"
 
+  // Formatar valor monetário se começar com $
+  const formattedValue = value.startsWith("$") ? formatCurrencyWithSymbol(value, language as any) : value
+
   return (
     <Card>
       <CardContent className="p-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-2xl font-bold">{value}</p>
-            <p className="text-gray-500 dark:text-gray-400">{label}</p>
+            <p className="text-xl font-bold">{formattedValue}</p>
+            <p className="text-gray-500 dark:text-gray-400 small-text-adjust">{label}</p>
           </div>
           <div className={`${bgColorClass} p-3 rounded-full`}>
             <Icon name={icon} className={textColorClass} />

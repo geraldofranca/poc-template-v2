@@ -9,12 +9,18 @@ import { TrafficSources } from "@/components/features/dashboard/traffic-sources"
 import { SalesRevenue } from "@/components/features/dashboard/sales-revenue"
 import { BottomStats } from "@/components/features/dashboard/bottom-stats"
 import { DashboardContent } from "@/components/dashboard-content"
+import { NotificationProvider } from "@/components/notifications/notification-context"
+import { LanguageProvider } from "@/components/i18n/language-context"
 
 export default function Dashboard() {
   return (
-    <DashboardProvider>
-      <DashboardContent />
-    </DashboardProvider>
+    <LanguageProvider>
+      <NotificationProvider>
+        <DashboardProvider>
+          <DashboardContent />
+        </DashboardProvider>
+      </NotificationProvider>
+    </LanguageProvider>
   )
 }
 

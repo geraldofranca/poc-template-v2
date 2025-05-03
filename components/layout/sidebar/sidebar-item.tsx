@@ -37,7 +37,7 @@ export function SidebarItem({
         <span className={`w-5 h-5 flex items-center justify-center ${collapsed ? "" : "mr-3"}`}>
           <Icon name={icon} />
         </span>
-        {!collapsed && <span>{label}</span>}
+        {!collapsed && <span className="text-size-adjust">{label}</span>}
       </div>
       {!collapsed && hasSubmenu && <Icon name="chevron-right" size={16} />}
     </Link>
