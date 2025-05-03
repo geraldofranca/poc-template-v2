@@ -132,6 +132,21 @@ const translations = {
         message: "Your purchase was successful",
       },
     },
+    users: {
+      gridView: "Grid View",
+      listView: "List View",
+      users: "Users",
+      addUser: "Add User",
+      searchPlaceholder: "Search for name, email, phone number etc...",
+      sendMessage: "Send Message",
+      viewProfile: "View Profile",
+      editUser: "Edit User",
+      deleteUser: "Delete User",
+      admin: "Admin",
+      subscriber: "Subscriber",
+      editor: "Editor",
+      developer: "Developer",
+    },
   },
   es: {
     common: {
@@ -258,6 +273,21 @@ const translations = {
         title: "Compra Exitosa",
         message: "Tu compra fue exitosa",
       },
+    },
+    users: {
+      gridView: "Vista de Cuadrícula",
+      listView: "Vista de Lista",
+      users: "Usuarios",
+      addUser: "Añadir Usuario",
+      searchPlaceholder: "Buscar por nombre, correo, teléfono, etc...",
+      sendMessage: "Enviar Mensaje",
+      viewProfile: "Ver Perfil",
+      editUser: "Editar Usuario",
+      deleteUser: "Eliminar Usuario",
+      admin: "Administrador",
+      subscriber: "Suscriptor",
+      editor: "Editor",
+      developer: "Desarrollador",
     },
   },
   pt: {
@@ -386,6 +416,21 @@ const translations = {
         message: "Sua compra foi bem-sucedida",
       },
     },
+    users: {
+      gridView: "Visualização em Grade",
+      listView: "Visualização em Lista",
+      users: "Usuários",
+      addUser: "Adicionar Usuário",
+      searchPlaceholder: "Buscar por nome, email, telefone, etc...",
+      sendMessage: "Enviar Mensagem",
+      viewProfile: "Ver Perfil",
+      editUser: "Editar Usuário",
+      deleteUser: "Excluir Usuário",
+      admin: "Admin",
+      subscriber: "Assinante",
+      editor: "Editor",
+      developer: "Desenvolvedor",
+    },
   },
 }
 
@@ -407,6 +452,7 @@ export function useLanguage() {
   return context
 }
 
+export { LanguageProvider }
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>("pt")
   const [t, setTranslations] = useState<Translations>(translations.pt)

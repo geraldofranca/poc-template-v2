@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import Link from "next/link"
 import { Icon } from "@/components/ui/icon"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
@@ -23,6 +25,13 @@ export function SidebarItem({
   collapsed = false,
   onClick,
 }: SidebarItemProps) {
+  const handleClick = (e: React.MouseEvent) => {
+    if (onClick) {
+      e.preventDefault()
+      onClick()
+    }
+  }
+
   const item = (
     <Link
       href={href}
@@ -31,7 +40,7 @@ export function SidebarItem({
           ? "bg-gray-100 dark:bg-gray-700 text-blue-600 dark:text-blue-400"
           : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
       } ${collapsed ? "justify-center" : ""}`}
-      onClick={onClick}
+      onClick={handleClick}
     >
       <div className="flex items-center">
         <span className={`w-5 h-5 flex items-center justify-center ${collapsed ? "" : "mr-3"}`}>

@@ -8,6 +8,7 @@ import { useDashboard } from "@/components/providers/dashboard-provider"
 import { useLanguage } from "@/components/i18n/language-context"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
+import { useRouter } from "next/navigation"
 
 interface MobileSubmenuProps {
   label: string
@@ -75,6 +76,7 @@ export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const { currentUser } = useDashboard()
   const { t } = useLanguage()
+  const router = useRouter()
 
   // Definindo os itens do menu com submenus
   const MENU_ITEMS = [
@@ -96,7 +98,7 @@ export function MobileMenu() {
       hasSubmenu: true,
       active: true,
       submenuItems: [
-        { label: t.menu.dashboard || "Dashboard", href: "#", active: true },
+        { label: t.menu.dashboard || "Dashboard", href: "/", active: true },
         { label: t.menu.products || "Products", href: "#" },
         { label: t.menu.orders || "Orders", href: "#" },
         { label: t.menu.customers || "Customers", href: "#" },
@@ -135,12 +137,11 @@ export function MobileMenu() {
     {
       icon: "user",
       label: t.menu.users,
-      hasSubmenu: true,
-      submenuItems: [
-        { label: t.menu.userList || "User List", href: "#" },
-        { label: t.menu.userDetails || "User Details", href: "#" },
-        { label: t.menu.userEdit || "User Edit", href: "#" },
-      ],
+      href: "/users",
+      onClick: () => {
+        router.push("/users")
+        setIsOpen(false)
+      },
     },
   ]
 
@@ -310,7 +311,7 @@ export function MobileMenu() {
                     label={item.label}
                     active={item.active}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={item.onClick || (() => setIsOpen(false))}
                   />
                 ),
               )}
